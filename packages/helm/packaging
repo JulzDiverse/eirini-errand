@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+echo "Installing helm"
+
+BIN_DIR="${BOSH_INSTALL_TARGET}"/bin
+
+mkdir -p "${BIN_DIR}"
+curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-linux-amd64.tar.gz
+tar xfz helm-v2.14.3-linux-amd64.tar.gz
+mv linux-amd64/helm "$BIN_DIR"
+chmod 755  "${BIN_DIR}"/helm
+rm helm-v2.14.3-linux-amd64.tar.gz

@@ -1,0 +1,3 @@
+[submodule "src/eirini-release"]
+	path = src/eirini-release
+	url = https://github.com/cloudfoundry-incubator/eirini-release.git

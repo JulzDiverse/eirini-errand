@@ -10,7 +10,7 @@ main(){
 create-secrets(){
   local secret_name=<%= p("cc_certs_secret_name") %>
   local namespace=scf
-  # kubectl create secret generic $secret_name --from-file=config/certs --namespace $namespace
+  kubectl create secret generic $secret_name --from-file=config/certs --namespace $namespace
 }
 
 helm-install-eirini(){

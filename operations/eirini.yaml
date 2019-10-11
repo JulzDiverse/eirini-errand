@@ -1,0 +1,27 @@
+---
+- type: replace
+  path: /releases?/-
+  value:
+    name: eirini
+    version: latest
+
+- type: replace
+  path: /instance_groups?/-
+  value:
+    name: eirini
+    instances: 1
+    stemcell: default
+    update:
+      serial: true
+    vm_type: minimal
+    azs:
+    - z1
+    networks:
+    - name: default
+    lifecycle: errand
+    jobs:
+    - name: opi
+      release: eirini
+      properties:
+        opi:
+

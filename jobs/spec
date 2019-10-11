@@ -6,11 +6,20 @@ description: "This errand installs Eirini on a Cubernetes kluster"
 packages:
   - helm
   - kubectl
+  - eirini-release
 
 templates:
   run.erb: bin/run
   values.yaml.erb: config/values.yaml
   bpm.yml.erb: config/bpm.yml
+  doppler-cert.erb: config/certs/doppler-cert
+  doppler-cert-key.erb: config/certs/doppler-cert-key
+  cc-server-crt.erb: config/certs/cc-server-crt
+  cc-server-crt-key.erb: config/certs/cc-server-crt-key
+  internal-ca-cert.erb: config/certs/internal-ca-cert
+  eirini-client-crt.erb: config/certs/eirini-client-crt
+  eirini-client-crt-key.erb: config/certs/eirini-client-crt-key
+  internal-ca-cert.erb: config/certs/internal-ca-cert
 
 properties:
   ingress_endpoint:
@@ -31,3 +40,19 @@ properties:
     description: "nats address"
   doppler_address:
     description: "doppler address"
+  doppler-cert:
+    description: "doppler-cert certificate"
+  doppler-cert-key:
+    description: "doppler-cert-key certificate"
+  cc-server-crt:
+    description: "cc-server-crt certificate"
+  cc-server-crt-key:
+    description: "cc-server-crt-key certificate"
+  internal-ca-cert:
+    description: "internal-ca-cert certificate"
+  eirini-client-crt:
+    description: "eirini-client-crt certificate"
+  eirini-client-crt-key:
+    description: "eirini-client-crt-key certificate"
+  internal-ca-cert:
+    description: "internal-ca-cert certificate"
