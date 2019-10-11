@@ -1,0 +1,33 @@
+---
+name: install_eirini
+
+description: "This errand installs Eirini on a Cubernetes kluster"
+
+packages:
+  - helm
+  - kubectl
+
+templates:
+  run.erb: bin/run
+  values.yaml.erb: config/values.yaml
+  bpm.yml.erb: config/bpm.yml
+
+properties:
+  ingress_endpoint:
+    description: "the ingress endpoint man!"
+  external_ips:
+    default: []
+    description: "the external IP's of your kubernetes workers"
+  use_registry_ingress:
+    default: false
+    description: "wanna expose your registry with ingress? set it to true!"
+  registry_address:
+    description: "registry address"
+  cc_internal_api:
+    description: "cc internal api"
+  cc_certs_secret_name:
+    description: "cc certs secret name"
+  nats_address:
+    description: "nats address"
+  doppler_address:
+    description: "doppler address"

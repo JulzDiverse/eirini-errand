@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+main(){
+   create-secrets
+   helm-install-eirini
+}
+
+create-secrets(){
+  local secret_name=<%= p("cc_certs_secret_name") %>
+  local namespace=scf
+  # kubectl create secret generic $secret_name --from-file=config/certs --namespace $namespace
+}
+
+helm-install-eirini(){
+  helm install helm/eirini --values config/values.yaml --name eirini --namespace=scf
+}
+
+main
