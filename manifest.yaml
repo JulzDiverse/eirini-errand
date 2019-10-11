@@ -1,0 +1,9 @@
+---
+name: eirini
+manifest_version: v1.0.0
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: 3147
+
+
