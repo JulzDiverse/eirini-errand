@@ -1,4 +1,4 @@
 ---
-name: eirini
+name: eirini-release
 files:
   - eirini-release/**/*
