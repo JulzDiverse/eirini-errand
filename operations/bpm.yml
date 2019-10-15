@@ -1,0 +1,19 @@
+---
+- type: replace
+  path: /releases?/-
+  value:
+    name: bpm
+    url: https://bosh.io/d/github.com/cloudfoundry/bpm-release?v=1.1.3
+    version: 1.1.3
+- type: replace
+  path: /addons?/-
+  value:
+    name: bpm
+    include:
+      stemcell:
+      - os: ubuntu-trusty
+    jobs:
+    - name: bpm
+      release: bpm
+
+

@@ -20,8 +20,12 @@ templates:
   eirini-client-crt.erb: config/certs/eirini-client-crt
   eirini-client-crt-key.erb: config/certs/eirini-client-crt-key
   internal-ca-cert.erb: config/certs/internal-ca-cert
+  install.erb: bin/install
+  kube-config.yml.erb: config/kube-config.yml
 
 properties:
+  kube_config:
+    description: "Kubernetes config for your cluster"
   ingress_endpoint:
     description: "the ingress endpoint man!"
   external_ips:

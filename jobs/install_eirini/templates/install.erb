@@ -1,9 +1,15 @@
 #!/bin/bash
 
-set -e
+set -ex
+
+WORK_DIR=/var/vcap/jobs/install_eirini
+KUBECTL=/var/vcap/packages/kubectl/bin
+HELM=/var/vcap/packages/helm/bin
+export PATH=${HELM}:${KUBECTL}:${PATH}
+export KUBECONFIG=$WORK_DIR/config/kube-config.yml
 
 main(){
-   create-secrets
+  # create-secrets
    helm-install-eirini
 }
 
@@ -14,7 +20,8 @@ create-secrets(){
 }
 
 helm-install-eirini(){
-  helm install helm/eirini --values config/values.yaml --name eirini --namespace=scf
+  cd $WORK_DIR
+  helm install ./packages/eirini-release/eirini-release/helm/eirini --values ./config/values.yaml --name eirini --namespace=scf
 }
 
 main

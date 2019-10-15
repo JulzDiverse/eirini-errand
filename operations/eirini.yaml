@@ -2,13 +2,13 @@
 - type: replace
   path: /releases?/-
   value:
-    name: eirini
+    name: eirini-errand
     version: latest
 
 - type: replace
   path: /instance_groups?/-
   value:
-    name: eirini
+    name: eirini-errand
     instances: 1
     stemcell: default
     update:
@@ -20,23 +20,30 @@
     - name: default
     lifecycle: errand
     jobs:
-    - name: opi
-      release: eirini
+    - name: install_eirini
+      release: eirini-errand
       properties:
-        opi:
-          ingress_endpoint: "((ingress_endpoint))"
-          external_ips: "((external_ips))"
-          use_registry_ingress: "((use_registry_ingress))"
-          registry_address: "((registry_address))"
-          cc_internal_api: "((cc_internal_api))"
-          cc_certs_secret_name: "((cc_certs_secret_name))"
-          nats_address: "((nats_address))"
-          doppler_address: "((doppler_address))"
-          doppler-cert: "((doppler-cert))"
-          doppler-cert-key: "((doppler-cert-key))"
-          cc-server-crt: "((cc-server-crt))"
-          cc-server-crt-key: "((cc-server-crt-key))"
-          internal-ca-cert: "((internal-ca-cert))"
-          eirini-client-crt: "((eirini-client-crt))"
-          eirini-client-crt-key: "((eirini-client-crt-key))"
-          internal-ca-cert: "((internal-ca-cert))"
+        bpm:
+          enabled: true
+        kube_config: "((kube_config_flatten))"
+        ingress_endpoint: "((ingress_endpoint))"
+        external_ips:
+        - 158.176.123.28
+        - 158.176.123.54
+        - 158.176.123.40
+        use_registry_ingress: "((use_registry_ingress))"
+        registry_address: "((registry_address))"
+        cc_internal_api: "((cc_internal_api))"
+        cc_certs_secret_name: "((cc_certs_secret_name))"
+        nats_address: "((nats_address))"
+        doppler_address: "((doppler_address))"
+        doppler-cert: "((doppler-cert))"
+        doppler-cert-key: "((doppler-cert-key))"
+        cc-server-crt: "((cc-server-crt))"
+        cc-server-crt-key: "((cc-server-crt-key))"
+        internal-ca-cert: "((internal-ca-cert))"
+        eirini-client-crt: "((eirini-client-crt))"
+        eirini-client-crt-key: "((eirini-client-crt-key))"
+        internal-ca-cert: "((internal-ca-cert))"
+
+
