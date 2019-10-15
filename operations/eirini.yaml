@@ -39,11 +39,24 @@
         doppler_address: "((doppler_address))"
         doppler-cert: "((doppler-cert))"
         doppler-cert-key: "((doppler-cert-key))"
-        cc-server-crt: "((cc-server-crt))"
-        cc-server-crt-key: "((cc-server-crt-key))"
-        internal-ca-cert: "((internal-ca-cert))"
+        cc-server-crt: "((cc_public_tls.certificate))"
+        cc-server-crt-key: "((cc_public_tls.private_key))"
+        internal-ca-cert: "((cc_public_tls.ca))"
         eirini-client-crt: "((eirini-client-crt))"
         eirini-client-crt-key: "((eirini-client-crt-key))"
-        internal-ca-cert: "((internal-ca-cert))"
+
+
+- type: replace
+  path: /variables?/-
+  value:
+    name: cc_public_tls
+    type: certificate
+    options:
+      ca: service_cf_internal_ca
+      common_name: "api.((system_domain))"
+      alternative_names:
+      - "api.((system_domain))"
+      - cloud-controller-ng.service.cf.internal
+
 
 
