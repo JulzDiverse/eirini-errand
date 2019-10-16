@@ -1,16 +1,12 @@
 opi:
   ingress_endpoint: <%= p("ingress_endpoint") %>
-  use_registry_ingress: false
+  use_registry_ingress: <%= p("use_registry_ingress") %>
   disk_limit_mb: 2048
   image_tag: latest
   namespace: eirini
   registry_secret_name: registry-credentials
   rootfs_patcher_timeout: 2m
   version: 0.0.0
-  external_ips: <%=
-    external_ips = p("external_ips").flatten
-    external_ips.to_json
-  %>
   rootfs_version: v75.0.0
   registry_address: <%= p("registry_address") %>
   cc_internal_api: <%= p("cc_internal_api") %>
@@ -18,3 +14,7 @@ opi:
   nats_address: <%= p("nats_address") %>
   doppler_address: <%= p("doppler_address") %>
 
+  external_ips: <%=
+    external_ips = p("external_ips").flatten
+    external_ips.to_json
+  %>

@@ -2,13 +2,13 @@
 - type: replace
   path: /releases?/-
   value:
-    name: eirini-errand
+    name: opi
     version: latest
 
 - type: replace
   path: /instance_groups?/-
   value:
-    name: eirini-errand
+    name: opi
     instances: 1
     stemcell: default
     update:
@@ -21,42 +21,52 @@
     lifecycle: errand
     jobs:
     - name: install_eirini
-      release: eirini-errand
+      release: opi
       properties:
         bpm:
           enabled: true
         kube_config: "((kube_config_flatten))"
-        ingress_endpoint: "((ingress_endpoint))"
+        # todo: interpolate external_ips vars
         external_ips:
-        - 158.176.123.28
-        - 158.176.123.54
-        - 158.176.123.40
+        - 35.233.9.213
         use_registry_ingress: "((use_registry_ingress))"
+        ingress_endpoint: "((ingress_endpoint))"
         registry_address: "((registry_address))"
         cc_internal_api: "((cc_internal_api))"
         cc_certs_secret_name: "((cc_certs_secret_name))"
         nats_address: "((nats_address))"
         doppler_address: "((doppler_address))"
-        doppler-cert: "((doppler-cert))"
-        doppler-cert-key: "((doppler-cert-key))"
-        cc-server-crt: "((cc_public_tls.certificate))"
-        cc-server-crt-key: "((cc_public_tls.private_key))"
-        internal-ca-cert: "((cc_public_tls.ca))"
-        eirini-client-crt: "((eirini-client-crt))"
-        eirini-client-crt-key: "((eirini-client-crt-key))"
-
+        doppler-cert: "((loggregator_tls_agent.certificate))"
+        doppler-cert-key: "((loggregator_tls_agent.private_key))"
+        # probably need a different doppler ca
+        cc-server-crt: "((cc_bridge_tps.certificate))"
+        cc-server-crt-key: "((cc_bridge_tps.private_key))"
+        internal-ca-cert: "((service_cf_internal_ca.certificate))"
+        eirini-client-crt: "((eirini_tls_server_cert.certificate))"
+        eirini-client-crt-key: "((eirini_tls_server_cert.private_key))"
 
 - type: replace
-  path: /variables?/-
+  path: /variables/name=loggregator_tls_agent/options/alternative_names?
   value:
-    name: cc_public_tls
+    - localhost
+    - metron
+
+- type: replace
+  path: /variables/name=eirini_ca?
+  value:
+    name: eirini_ca
+    options:
+      common_name: ca
+      is_ca: true
+    type: certificate
+
+- type: replace
+  path: /variables/name=eirini_tls_server_cert?
+  value:
+    name: eirini_tls_server_cert
     type: certificate
     options:
-      ca: service_cf_internal_ca
-      common_name: "api.((system_domain))"
-      alternative_names:
-      - "api.((system_domain))"
-      - cloud-controller-ng.service.cf.internal
-
-
-
+      ca: eirini_ca
+      common_name: eirini.service.cf.internal # common name probably not valid
+      extended_key_usage:
+      - server_auth
