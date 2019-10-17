@@ -11,4 +11,3 @@ curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-linux-amd64
 tar xfz helm-v2.14.3-linux-amd64.tar.gz
 mv linux-amd64/helm "$BIN_DIR"
 chmod 755  "${BIN_DIR}"/helm
-rm helm-v2.14.3-linux-amd64.tar.gz

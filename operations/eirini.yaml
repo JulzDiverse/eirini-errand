@@ -45,6 +45,9 @@
         internal-ca-cert: "((service_cf_internal_ca.certificate))"
         eirini-client-crt: "((eirini_tls_server_cert.certificate))"
         eirini-client-crt-key: "((eirini_tls_server_cert.private_key))"
+        loggregator-agent-cert: "((loggregator_tls_agent.certificate))"
+        loggregator-agent-cert-key: "((loggregator_tls_agent.private_key))"
+        loggregator-agent-ca: "((loggregator_tls_agent.ca))"
 
 - type: replace
   path: /variables/name=loggregator_tls_agent/options/alternative_names?

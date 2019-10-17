@@ -13,6 +13,9 @@ templates:
   values.yaml.erb: config/values.yaml
   bpm.yml.erb: config/bpm.yml
   doppler-cert.erb: config/certs/doppler-cert
+  loggregator-agent-cert.erb: config/certs/loggregator-agent-cert
+  loggregator-agent-cert-key.erb: config/certs/loggregator-agent-cert-key
+  loggregator-agent-ca.erb: config/certs/loggregator-agent-ca
   doppler-cert-key.erb: config/certs/doppler-cert-key
   cc-server-crt.erb: config/certs/cc-server-crt
   cc-server-crt-key.erb: config/certs/cc-server-crt-key
@@ -51,6 +54,12 @@ properties:
     description: "doppler-cert certificate"
   doppler-cert-key:
     description: "doppler-cert-key certificate"
+  loggregator-agent-cert:
+    description: "loggregator-cert certificate"
+  loggregator-agent-cert-key:
+    description: "loggregator-cert-key certificate"
+  loggregator-agent-ca:
+    description: "loggregator CA"
   cc-server-crt:
     description: "cc-server-crt certificate"
   cc-server-crt-key:
