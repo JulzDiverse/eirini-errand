@@ -7,6 +7,7 @@ KUBECTL=/var/vcap/packages/kubectl/bin
 HELM=/var/vcap/packages/helm/bin
 export PATH=${HELM}:${KUBECTL}:${PATH}
 export KUBECONFIG=$WORK_DIR/config/kube-config.yml
+export GOOGLE_APPLICATION_CREDENTIALS=$WORK_DIR/config/service-account.json
 
 main(){
    create-secrets

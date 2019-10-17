@@ -22,10 +22,13 @@ templates:
   internal-ca-cert.erb: config/certs/internal-ca-cert
   install.erb: bin/install
   kube-config.yml.erb: config/kube-config.yml
+  service-account.json.erb: config/service-account.json
 
 properties:
   kube_config:
     description: "Kubernetes config for your cluster"
+  gke_service_account:
+    description: "Service account when deploying to GKE "
   ingress_endpoint:
     description: "the ingress endpoint man!"
   external_ips:

@@ -26,6 +26,7 @@
         bpm:
           enabled: true
         kube_config: "((kube_config_flatten))"
+        gke_service_account: "((gke_service_account))"
         # todo: interpolate external_ips vars
         external_ips:
         - 35.233.9.213
