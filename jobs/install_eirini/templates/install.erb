@@ -27,7 +27,10 @@ create-secrets(){
 
 helm-install-eirini(){
   cd $WORK_DIR
-  helm install ./packages/eirini-release/eirini-release/helm/eirini --values ./config/values.yaml --name eirini --namespace=scf
+  helm upgrade --install eirini \
+      ./packages/eirini-release/eirini-release/helm/eirini \
+       --values ./config/values.yaml \
+       --namespace=scf
 }
 
 main
