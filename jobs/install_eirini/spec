@@ -70,5 +70,5 @@ properties:
     description: "eirini-client-crt certificate"
   eirini-client-crt-key:
     description: "eirini-client-crt-key certificate"
-  internal-ca-cert:
-    description: "internal-ca-cert certificate"
+  nats_password:
+    description: "The nats password"
