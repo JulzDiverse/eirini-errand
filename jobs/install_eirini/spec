@@ -72,3 +72,5 @@ properties:
     description: "eirini-client-crt-key certificate"
   nats_password:
     description: "The nats password"
+  bits_password:
+    description: "Bits user's password"

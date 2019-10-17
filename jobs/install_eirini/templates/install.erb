@@ -21,6 +21,8 @@ create-secrets(){
   kubectl create secret generic $secret_name \
     --from-file=config/certs \
     --from-literal=nats-password=<%= p("nats_password") %> \
+    --from-literal=bits-service-user=admin \
+    --from-literal=bits-service-password=<%= p("bits_password") %> \
     --namespace $namespace \
     --dry-run -o yaml |
   kubectl apply -f -
