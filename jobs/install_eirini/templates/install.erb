@@ -10,14 +10,19 @@ export KUBECONFIG=$WORK_DIR/config/kube-config.yml
 export GOOGLE_APPLICATION_CREDENTIALS=$WORK_DIR/config/service-account.json
 
 main(){
-   create-secrets
    helm-install-eirini
+   create-secrets
 }
 
 create-secrets(){
   local secret_name=<%= p("cc_certs_secret_name") %>
   local namespace=scf
-  kubectl create secret generic $secret_name --from-file=config/certs --namespace $namespace
+  kubectl create secret generic $secret_name \
+    --from-file=config/certs \
+    --from-literal=nats-password=<%= p("nats_password") %> \
+    --namespace $namespace \
+    --dry-run -o yaml |
+  kubectl apply -f -
 }
 
 helm-install-eirini(){
